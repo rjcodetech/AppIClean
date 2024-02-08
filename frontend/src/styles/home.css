@@ -1,0 +1,65 @@
+/* Adapte os estilos conforme necessário */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header {
+    background-color: #3498db;
+    color: #fff;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .header-links a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+  }
+  
+  .main {
+    padding: 20px;
+  }
+  
+  .search-form {
+    display: flex;
+  }
+  
+  .input {
+    padding: 10px;
+    margin-right: 10px;
+    width: 100%;
+  }
+
+  .button {
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: #2980b9;
+  }
+
+  
+  @media (min-width: 768px) {
+    .search-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  
+    .input {
+      width: 48%;
+    }
+  }
+  
