@@ -15,9 +15,10 @@ router.get('/agendamentos', (req, res) => {
 
 // Rota para adicionar um novo agendamento
 router.post('/agendamentos', (req, res) => {
-  const { nome_cliente, descricao_servico } = req.body;
-  const sql = 'INSERT INTO agendamentos (nome_cliente, descricao_servico) VALUES (?, ?)';
-  db.query(sql, [nome_cliente, descricao_servico], (err, result) => {
+  const { data, hora, usuarioId, solicitante_id, servico, endereco, obs } = req.body;
+  console.log('Dados do agendamento:', req.body);
+  const sql = 'INSERT INTO agendamentos (data_agendamento, hora_agendamento, cliente_id, solicitante_id, descricao_servico, endereco, obs) VALUES (?, ?, ?, ?, ?, ?, ?)';
+  db.query(sql, [data, hora, usuarioId, solicitante_id, servico, endereco, obs], (err, result) => {
     if (err) throw err;
     res.json({ message: 'Agendamento adicionado com sucesso!' });
   });

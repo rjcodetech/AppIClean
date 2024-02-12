@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import ConfirmacaoAgendamento from './ConfirmacaoAgendamento.js';
 
-const FormularioCadastroLimpeza = ({ horariosDisponiveis, hora, horarioId }) => {
+const FormularioCadastroLimpeza = ({ dadosAgendamento }) => {
   const [formData, setFormData] = useState({
     nome: '',
     cpf: '',
@@ -14,9 +14,12 @@ const FormularioCadastroLimpeza = ({ horariosDisponiveis, hora, horarioId }) => 
     complemento: '',
     cidade: '',
     estado: '',
-    hora: hora,
-    horarioId: horarioId
-  });
+    hora: dadosAgendamento.hora,
+    horarioId: dadosAgendamento.horarioId,
+    data: dadosAgendamento.data,
+    usuarioId: dadosAgendamento.usuarioId,
+    servico: '',
+    });
 
   const [exibirConfirmacao, setExibirConfirmacao] = useState(false);
 
@@ -64,8 +67,7 @@ const FormularioCadastroLimpeza = ({ horariosDisponiveis, hora, horarioId }) => 
     console.log('Agendamento confirmado');
   };
 
-  console.log('Hora selecionada:', hora);
-  console.log('ID do horário selecionado:', horarioId);
+  console.log("dadosAgendamento", dadosAgendamento);
 
   return (
     <div className="card">
@@ -76,8 +78,9 @@ const FormularioCadastroLimpeza = ({ horariosDisponiveis, hora, horarioId }) => 
         ) : (
         <form onSubmit={handleSubmit}>
 
-          <input type="hidden" id="hora" name="hora" value={hora} />
-          <input type="hidden" id="horarioId" name="horarioId" value={horarioId} />
+          <input type="hidden" id="hora" name="hora" value={dadosAgendamento.hora} />
+          <input type="hidden" id="horarioId" name="horarioId" value={dadosAgendamento.horarioId} />
+          <input type="hidden" id="data" name="data" value={dadosAgendamento.data} />
 
           <div className="mb-3">
             <label htmlFor="nome" className="form-label">Nome:</label>
@@ -118,6 +121,14 @@ const FormularioCadastroLimpeza = ({ horariosDisponiveis, hora, horarioId }) => 
           <div className="mb-3">
             <label htmlFor="estado" className="form-label">Estado:</label>
             <input type="text" id="estado" name="estado" className="form-control" value={formData.estado} onChange={handleChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="servico" className="form-label">Serviço:</label>
+            <input type="text" id="servico" name="servico" className="form-control" value={formData.servico} onChange={handleChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="servico" className="form-label">Observações:</label>
+            <input type="text" id="obs" name="obs" className="form-control" value={formData.obs} onChange={handleChange} />
           </div>
           <button type="submit" className="btn btn-primary">Enviar</button>
         </form>

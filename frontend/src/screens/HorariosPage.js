@@ -33,9 +33,12 @@ const HorariosPage = ({ cidadeSelecionada, estadoSelecionado }) => {
     alert(`Horário ${horario.horario_id} selecionado`);
     setHorarioSelecionado(horario);
     setDadosAgendamento({
-      data: horario.data_reduzida,
+      data_reduzida: horario.data_reduzida,
+      data: horario.data,
       hora: horario.hora,
-      usuario: horario.nome_usuario
+      usuario: horario.nome_usuario,
+      usuarioId: horario.usuario_id,
+      horarioId: horario.horario_id,
     });
   };
 
@@ -58,7 +61,7 @@ const HorariosPage = ({ cidadeSelecionada, estadoSelecionado }) => {
   return (
     <div>
       {horarioSelecionado ? (
-        <FormularioCadastroLimpeza dadosAgendamento={dadosAgendamento} hora={horarioSelecionado.hora} horarioId={horarioSelecionado.horario_id} />
+        <FormularioCadastroLimpeza dadosAgendamento={dadosAgendamento}/>
       ) : (
         <div>
           <h2 className="mt-3 mb-4">Horários Disponíveis para Agendamento</h2>
